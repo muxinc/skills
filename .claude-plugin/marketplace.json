@@ -12,7 +12,7 @@
     {
       "name": "mux",
       "source": "./",
-      "description": "Agent skills for building with Mux, including live routing to Mux's current LLM-ready documentation.",
+      "description": "Routes agents to Mux's current LLM-ready documentation so they build with Mux correctly on the first try.",
       "author": {
         "name": "Mux",
         "url": "https://mux.com"
