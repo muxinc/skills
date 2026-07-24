@@ -33,6 +33,12 @@ skills/mux/
     ├── live-streaming-complete-setup.md
     ├── ai-video-workflows.md
     └── ...
+
+skills/mux-docs/
+└── SKILL.md              # Live docs discovery: routes agents to Mux's
+                          # current LLM-ready docs (mux.com/llms.txt,
+                          # collection indexes, per-page markdown) so
+                          # answers come from today's published docs
 ```
 
 ### Reference documentation covers
@@ -61,6 +67,19 @@ npx skills add muxinc/skills
 ```
 
 This will install the Mux skill into your AI coding assistant.
+
+### Claude Code plugin
+
+This repository is also a Claude Code plugin marketplace:
+
+```
+/plugin marketplace add muxinc/skills
+/plugin install mux@mux
+```
+
+### Mux CLI
+
+The [Mux CLI](https://github.com/muxinc/cli) ships the `mux-docs` skill embedded in every binary. `mux skills install` copies it into `~/.claude/skills` for automatic loading, and `mux skills update` refreshes local copies after upgrading the CLI.
 
 ## Usage
 

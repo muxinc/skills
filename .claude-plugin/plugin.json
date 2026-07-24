@@ -1,0 +1,12 @@
+{
+  "name": "mux",
+  "description": "Agent skills for building with Mux, including live routing to Mux's current LLM-ready documentation.",
+  "author": {
+    "name": "Mux",
+    "url": "https://mux.com"
+  },
+  "homepage": "https://docs.mux.com",
+  "repository": "https://github.com/muxinc/skills",
+  "license": "MIT",
+  "keywords": ["mux", "video", "live-streaming", "playback", "webhooks", "mux-data", "documentation"]
+}
