@@ -1,5 +1,5 @@
 ---
-name: mux-docs
+name: mux-video
 description: Use for any question about Mux APIs, SDKs, the mux CLI, webhooks, assets, uploads, playback, live streaming, Mux Data, or Mux Robots. Finds the current Mux documentation — Mux publishes every docs page as LLM-ready markdown indexed at mux.com/llms.txt — so answers come from today's published docs instead of web search or model memory.
 ---
 
