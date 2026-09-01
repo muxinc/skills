@@ -1,0 +1,23 @@
+name: Notify CLI of skill updates
+
+# When skills change on main, tell muxinc/cli to re-sync its embedded copy
+# (see sync-skills.yml in that repo). Requires the CLI_SYNC_TOKEN secret: a
+# fine-grained PAT with contents read/write on muxinc/cli.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/**'
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository_dispatch to muxinc/cli
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.CLI_SYNC_TOKEN }}
+          repository: muxinc/cli
+          event-type: skills-updated
+          client-payload: '{"skills_commit": "${{ github.sha }}"}'

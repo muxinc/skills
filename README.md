@@ -1,81 +1,53 @@
-# Mux Skill
+# Mux Agent Skills
 
-> **Experimental**: This skill is under active development and may change significantly. Use at your own discretion.
-
-A skill that provides comprehensive documentation and examples for building video applications with [Mux](https://mux.com).
-
-## What is this?
-
-This is a skill package that can be installed into AI coding assistants (Claude Code, Cursor, Windsurf, etc.) to give them deep knowledge about Mux's video infrastructure platform. When enabled, your AI assistant can help you:
-
-- Build video-on-demand and live streaming applications
-- Integrate Mux Player into web and mobile apps
-- Set up video uploads with progress tracking
-- Configure analytics and monitoring with Mux Data
-- Implement content security (signed URLs, DRM)
-- Work with AI-powered video features (auto-chapters, summarization, moderation)
+Skills that teach AI coding agents how to build with [Mux](https://mux.com) using today's published documentation.
 
 ## What's included
 
 ```
-skills/mux/
-├── SKILL.md              # Skill definition and quick start guide
-├── reference/            # 40+ reference docs covering core concepts
-│   ├── mux-fundamentals.md
-│   ├── api-authentication.md
-│   ├── mux-player-overview.md
-│   ├── live-streaming-getting-started.md
-│   ├── webhooks.md
-│   └── ...
-└── examples/             # 20 practical implementation examples
-    ├── quickstart-stream-video.md
-    ├── direct-upload-with-webhooks.md
-    ├── live-streaming-complete-setup.md
-    ├── ai-video-workflows.md
-    └── ...
+skills/mux-docs/
+└── SKILL.md    # Live docs discovery: routes agents to Mux's current
+                # LLM-ready docs (mux.com/llms.txt, collection indexes,
+                # per-page markdown) so answers come from today's
+                # published docs, not snapshots or model memory
 ```
 
-### Reference documentation covers
-
-- **Core concepts**: Organizations, environments, assets, playback IDs, API structure
-- **Mux Player**: Setup, customization, advanced features (Chromecast, AirPlay, DVR)
-- **Video upload**: URL ingestion, direct uploads, Mux Uploader components
-- **Live streaming**: RTMP/SRT ingest, latency modes, simulcasting, live clipping
-- **Mux Data**: Metrics, dashboards, custom dimensions, alerts
-- **Player integrations**: Video.js, HLS.js, Shaka, ExoPlayer, AVPlayer
-- **Framework guides**: Next.js, React Native, Sanity CMS, and more
-- **Security**: Signed URLs, DRM, CSP configuration
-
-### Examples include
-
-- End-to-end video upload with webhook handling
-- Live streaming setup with embedded captions
-- Signed URL playback with JWT generation
-- React Native stories app implementation
-- AI video workflows (chapters, summarization, moderation)
+Mux publishes every docs page as LLM-ready markdown, indexed at [mux.com/llms.txt](https://www.mux.com/llms.txt). The `mux-docs` skill teaches agents to fetch the relevant page at answer time — API shapes, guides, Mux Data, Mux Robots, pricing — and to self-heal through `llms.txt` when URLs move. No documentation content lives in this repo, so nothing here goes stale.
 
 ## Installation
+
+### Claude Code plugin
+
+This repository is a Claude Code plugin marketplace:
+
+```
+/plugin marketplace add muxinc/skills
+/plugin install mux@mux
+```
+
+### skills CLI
 
 ```bash
 npx skills add muxinc/skills
 ```
 
-This will install the Mux skill into your AI coding assistant.
+### Mux CLI
+
+The [Mux CLI](https://github.com/muxinc/cli) ships the `mux-docs` skill embedded in every binary. `mux skills install` copies it into `~/.claude/skills` for automatic loading, and `mux skills update` refreshes local copies after upgrading the CLI.
+
+### Manual
+
+Copy `skills/mux-docs/` into your agent's skills directory (e.g. `~/.claude/skills/`). The skill is a single `SKILL.md` with no dependencies and works in any agent that supports the [Agent Skills](https://agentskills.io) format.
 
 ## Usage
 
-Once installed, your AI assistant will automatically use this knowledge when you ask about Mux-related topics:
+Once installed, your agent uses the skill automatically for Mux questions:
 
-- "How do I upload a video to Mux?"
-- "Set up live streaming with low latency"
-- "Add Mux Player to my React app"
-- "Configure webhooks to track video status"
-- "Generate signed playback URLs"
+- "What's the request body to create a live stream?"
+- "How do I get a thumbnail at the 30-second mark?"
+- "Which Mux Robots task generates chapters?"
 
-## Requirements
-
-- A Mux account with API credentials
-- An AI coding assistant with skills support (Claude Code, Cursor, Windsurf, etc.)
+Answers cite the docs page they came from.
 
 ## License
 
