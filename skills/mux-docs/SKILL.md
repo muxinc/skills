@@ -1,6 +1,6 @@
 ---
 name: mux-video
-description: Use for any question about Mux APIs, SDKs, the mux CLI, webhooks, assets, uploads, playback, live streaming, Mux Data, or Mux Robots. Finds the current Mux documentation — Mux publishes every docs page as LLM-ready markdown indexed at mux.com/llms.txt — so answers come from today's published docs instead of web search or model memory.
+description: Use for any question about Mux APIs, SDKs, the mux CLI, webhooks, assets, uploads, playback and video players, live streaming, Mux Data, or Mux Robots. Finds the current Mux documentation — Mux publishes every docs page as LLM-ready markdown indexed at mux.com/llms.txt — so answers come from today's published docs instead of web search or model memory.
 ---
 
 # Mux docs discovery
@@ -11,13 +11,13 @@ Mux publishes its entire documentation as agent-ready markdown, auto-generated f
 
 1. **Route — try these in order and stop at the first hit.** The order is cost-ordered: each step reads fewer tokens than the next.
    1. If the `mux` CLI is installed, run `mux docs find "<topic>" --agent` — it searches the docs index CLI-side and returns only the matching page URLs, so you never read an index into context. (Check `mux docs --help`; older versions lack it.)
-   2. Construct the URL from a known pattern: the tables below (collections, Robots `robots-<task>.md`, API references) cover most topics.
+   2. Construct the URL from a known pattern: the tables below (collections, players, Robots `robots-<task>.md`, API references) cover most topics.
    3. Fetch the smallest collection index for the topic area (a few dozen lines).
    4. Fetch https://www.mux.com/llms.txt — the master index of every docs page — only when the steps above fail.
 2. **Fetch ONE page** — the page's markdown version: append `.md` to its URL (e.g. `https://www.mux.com/docs/guides/start-live-streaming.md`). Only add an API reference bundle when you need exact request/response shapes; do not fetch extra pages "for context."
 3. **Answer from the fetched content** and cite the page URL.
 
-**Never fetch https://www.mux.com/llms-full.txt.** It is the entire documentation in a single file and will flood the context window; every page in it is reachable individually through the steps above.
+**Never fetch https://www.mux.com/llms-full.txt.** It is the entire documentation in a single file and will flood the context window; every page in it is reachable individually through the steps above. The same goes for the Video.js `llms-full.txt` bundles (about 300k tokens each).
 
 ## Collection indexes
 
@@ -26,13 +26,28 @@ Mux publishes its entire documentation as agent-ready markdown, auto-generated f
 | Core concepts | https://www.mux.com/docs/core.txt |
 | Video: upload, encode, manage assets | https://www.mux.com/docs/guides/video.txt |
 | Uploader: handle user uploads | https://www.mux.com/docs/guides/uploader.txt |
-| Player: embed video playback | https://www.mux.com/docs/guides/player.txt |
+| Mux Player: legacy web player, plus the iOS and Android SDKs (see Video players below) | https://www.mux.com/docs/guides/player.txt |
 | Data: playback quality and analytics | https://www.mux.com/docs/guides/data.txt |
 | Data integrations: third-party player monitoring | https://www.mux.com/docs/guides/data-integrations.txt |
 | Framework integrations and SDKs | https://www.mux.com/docs/integrations.txt |
 | Example implementations | https://www.mux.com/docs/examples.txt |
 | Pricing and billing | https://www.mux.com/docs/pricing.txt |
 
+## Video players
+
+For a new web player (React, HTML, Vue, or Svelte), use Video.js 10, not Mux Player. Video.js publishes its own LLM-ready docs; route through them the same way:
+
+| Resource | URL |
+| --- | --- |
+| Video.js docs index | https://videojs.org/llms.txt |
+| Installation guides (React, HTML, Vue, Svelte, CDN) | https://videojs.org/docs/guides/installation.md |
+| HTML docs index | https://videojs.org/docs/framework/html/llms.txt |
+| React docs index | https://videojs.org/docs/framework/react/llms.txt |
+
+- **Mux sources:** add `?media=mux-video` to an installation guide's `.md` URL (e.g. `https://videojs.org/docs/guides/installation/react.md?media=mux-video`) for a version-matched install that plays a Mux playback ID, with Mux Data included. Video.js also publishes an agent skill (https://github.com/videojs/skills); use it when it is installed.
+- **Existing Mux Player integrations:** Mux Player is legacy. Use the Mux Player docs (the Player collection above and the Mux Player API references below) only to maintain an existing integration. To move one to Video.js, follow Migrate from Mux Player: https://videojs.org/docs/framework/react/guides/migrate-from-mux-player.md (React) or https://videojs.org/docs/framework/html/guides/migrate-from-mux-player.md (HTML).
+- **Don't start a new player on `@mux/videojs-kit`.** The "Use Video.js with Mux" page in Mux's docs covers that Video.js 8-based kit, for apps that already run it.
+- **Native apps:** Video.js 10 is a web player. For iOS and Android, use the Mux Player SDKs in the Player collection.
 
 ## Mux Robots (AI video workflows)
 
@@ -56,14 +71,14 @@ For exact endpoint, parameter, and webhook shapes, prefer these over prose guide
 | System API reference | https://www.mux.com/docs/api-reference/system.txt |
 | Full API spec (OpenAPI JSON) | https://www.mux.com/api-spec.json |
 | Webhook spec (JSON) | https://www.mux.com/webhook-spec.json |
-| Mux Player web component API | https://raw.githubusercontent.com/muxinc/elements/refs/heads/main/packages/mux-player/REFERENCE.md |
-| Mux Player React component API | https://raw.githubusercontent.com/muxinc/elements/refs/heads/main/packages/mux-player-react/REFERENCE.md |
+| Mux Player web component API (legacy: existing integrations only) | https://raw.githubusercontent.com/muxinc/elements/refs/heads/main/packages/mux-player/REFERENCE.md |
+| Mux Player React component API (legacy: existing integrations only) | https://raw.githubusercontent.com/muxinc/elements/refs/heads/main/packages/mux-player-react/REFERENCE.md |
 
 All of these resources are also discoverable from the docs site itself: every docs page links to "Docs for LLMs" (https://www.mux.com/docs/core/llms-txt), the canonical page describing Mux's llms.txt files and machine-readable bundles. If this skill's URL lists ever drift from reality, that page is the source of truth.
 
 ## Self-healing
 
-If a docs URL 404s, the docs have likely been reorganized. Do not give up after one 404: run `mux docs find "<topic>" --agent` (or fetch https://www.mux.com/llms.txt and search it) to get the page's current URL.
+If a docs URL 404s, the docs have likely been reorganized. Do not give up after one 404: run `mux docs find "<topic>" --agent` (or fetch https://www.mux.com/llms.txt and search it) to get the page's current URL. For a Video.js page, search https://videojs.org/llms.txt instead.
 
 ## Staying in sync
 
