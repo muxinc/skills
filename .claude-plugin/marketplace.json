@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Agent skills for building with Mux: the API, the CLI, and current documentation.",
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
@@ -21,6 +21,23 @@
       "repository": "https://github.com/muxinc/skills",
       "license": "MIT",
       "keywords": ["mux", "video", "live-streaming", "playback", "webhooks", "mux-data", "documentation"],
+      "category": "development"
+    },
+    {
+      "name": "videojs",
+      "source": {
+        "source": "github",
+        "repo": "videojs/skills"
+      },
+      "description": "Build customizable, accessible video and audio players with Video.js 10, an open-source library of composable, framework-native components for React and the web.",
+      "author": {
+        "name": "Video.js",
+        "url": "https://videojs.org"
+      },
+      "homepage": "https://videojs.org",
+      "repository": "https://github.com/videojs/skills",
+      "license": "Apache-2.0",
+      "keywords": ["videojs", "video.js", "video-player", "audio-player", "react", "web-components", "hls", "mux"],
       "category": "development"
     }
   ]

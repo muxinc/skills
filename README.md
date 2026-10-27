@@ -25,10 +25,13 @@ This repository is a Claude Code plugin marketplace:
 /plugin install mux@mux
 ```
 
+Installing `mux` also installs `videojs`, the Video.js team's skills for building web players with Video.js 10, from [videojs/skills](https://github.com/videojs/skills).
+
 ### skills CLI
 
 ```bash
 npx skills add muxinc/skills
+npx skills add https://github.com/videojs/skills   # Video.js player skills
 ```
 
 ### Mux CLI
