@@ -36,14 +36,19 @@ Mux publishes its entire documentation as agent-ready markdown, auto-generated f
 
 ## Mux Robots (AI video workflows)
 
-Robots — Mux's AI-powered video workflows — don't have their own collection index; their guides are part of the video collection and the master llms.txt index. Start here:
+Robots — Mux's AI-powered video workflows — are generally available on the v1 API (`/robots/v1`). In `@mux/ts` 16+, `client.robots` calls v1; `client.robotsV0` and `/robots/v0` are the deprecated Beta. Start here:
 
 | Resource | URL |
 | --- | --- |
+| Robots collection index (workflows, Directives, migration guides) | https://www.mux.com/docs/guides/robots.txt |
 | Robots overview | https://www.mux.com/docs/guides/robots.md |
 | Robots directives reference | https://www.mux.com/docs/guides/robots-directives.md |
+| Supported languages | https://www.mux.com/docs/guides/robots-supported-languages.md |
+| Migrate from Beta (v0) to v1 | https://www.mux.com/docs/guides/robots-migrate-to-v1.md |
 
-Task-specific guides follow the pattern `https://www.mux.com/docs/guides/robots-<task>.md`, where `<task>` is one of: `summarize`, `moderate`, `generate-chapters`, `ask-questions`, `find-key-moments`, `find-scenes`, `find-best-thumbnails`, `translate-captions`, `translate-audio`, `generate-premium-captions`, `edit-captions`, `generate-engagement-insights`.
+Task-specific guides follow the pattern `https://www.mux.com/docs/guides/robots-<task>.md`, where `<task>` is one of: `analyze-structure`, `summarize`, `generate-chapters`, `generate-contextual-text`, `ask-questions`, `find-key-moments`, `find-best-thumbnails`, `generate-engagement-insights`, `moderate`, `generate-premium-captions`, `edit-captions`, `translate-captions`, `translate-audio`. For scenes, use `analyze-structure`.
+
+Migration guides follow `https://www.mux.com/docs/guides/robots-migrate-<topic>-to-v1.md`, where `<topic>` is `directives`, `webhooks`, or `typescript-sdk`.
 
 ## API references and specs
 
@@ -54,6 +59,7 @@ For exact endpoint, parameter, and webhook shapes, prefer these over prose guide
 | Video API reference | https://www.mux.com/docs/api-reference/video.txt |
 | Data API reference | https://www.mux.com/docs/api-reference/data.txt |
 | System API reference | https://www.mux.com/docs/api-reference/system.txt |
+| Robots v1 API reference (the full spec's `/robots/v0` paths are the deprecated Beta) | https://www.mux.com/docs/api-reference/robots.txt |
 | Full API spec (OpenAPI JSON) | https://www.mux.com/api-spec.json |
 | Webhook spec (JSON) | https://www.mux.com/webhook-spec.json |
 | Mux Player web component API | https://raw.githubusercontent.com/muxinc/elements/refs/heads/main/packages/mux-player/REFERENCE.md |
