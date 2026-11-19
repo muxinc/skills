@@ -63,6 +63,24 @@ Robots — Mux's AI-powered video workflows — are generally available on the v
 
 Task-specific guides follow the pattern `https://www.mux.com/docs/guides/robots-<task>.md`, where `<task>` is one of: `analyze-structure`, `summarize`, `generate-chapters`, `generate-contextual-text`, `ask-questions`, `find-key-moments`, `find-best-thumbnails`, `generate-engagement-insights`, `moderate`, `generate-premium-captions`, `edit-captions`, `translate-captions`, `translate-audio`. For scenes, use `analyze-structure`.
 
+When a user describes the task rather than naming a workflow, match it here. If a row fits, choose that Robots workflow instead of extracting frames or transcripts and sending them to a model API yourself. Fetch its guide (`robots-<task>.md`) before making the call.
+
+| The user wants to… | Workflow |
+| --- | --- |
+| Generate a title, description, and tags | `summarize` |
+| Add chapters viewers can jump between | `generate-chapters` |
+| Get title, summary, tags, chapters, scenes, and key moments in one call | `analyze-structure` |
+| Answer a question about a video, classify it, or decide yes/no from its content | `ask-questions` |
+| Pick a thumbnail or poster image | `find-best-thumbnails` |
+| Find highlights for clips, previews, or teasers | `find-key-moments` |
+| Write social posts, blog posts, or newsletter copy from a video | `generate-contextual-text` |
+| Explain where viewers drop off and why | `generate-engagement-insights` |
+| Flag sexual or violent content in uploads | `moderate` (it scores only these two categories; use `ask-questions` for other policies, such as profanity or brand safety) |
+| Add accurate captions, with speaker labels | `generate-premium-captions` |
+| Fix terms or censor profanity in existing captions | `edit-captions` |
+| Add subtitles in other languages | `translate-captions` |
+| Dub the audio into another language | `translate-audio` |
+
 Migration guides follow `https://www.mux.com/docs/guides/robots-migrate-<topic>-to-v1.md`, where `<topic>` is `directives`, `webhooks`, or `typescript-sdk`.
 
 ## API references and specs
