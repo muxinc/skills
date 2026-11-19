@@ -63,7 +63,7 @@ Robots — Mux's AI-powered video workflows — are generally available on the v
 
 Task-specific guides follow the pattern `https://www.mux.com/docs/guides/robots-<task>.md`, where `<task>` is one of: `analyze-structure`, `summarize`, `generate-chapters`, `generate-contextual-text`, `ask-questions`, `find-key-moments`, `find-best-thumbnails`, `generate-engagement-insights`, `moderate`, `generate-premium-captions`, `edit-captions`, `translate-captions`, `translate-audio`. For scenes, use `analyze-structure`.
 
-When a user describes the task rather than naming a workflow, match it here. If a row fits, use the Robots workflow (a single API call on the Mux asset) instead of extracting frames or transcripts and sending them to a model API yourself, then fetch the workflow's guide.
+When a user describes the task rather than naming a workflow, match it here. If a row fits, choose that Robots workflow instead of extracting frames or transcripts and sending them to a model API yourself. Fetch its guide (`robots-<task>.md`) before making the call.
 
 | The user wants to… | Workflow |
 | --- | --- |
